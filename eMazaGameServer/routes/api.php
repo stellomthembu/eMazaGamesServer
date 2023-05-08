@@ -1,7 +1,12 @@
 <?php
 
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\SubjectController;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use GuzzleHttp\Psr7\Uri;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +22,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/subjects', [SubjectController::class, 'getData']);
+
+Route::get(  '/questions', [QuestionController::class, 'getData']);
+
+
+
