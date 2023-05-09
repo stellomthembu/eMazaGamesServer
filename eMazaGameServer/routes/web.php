@@ -1,7 +1,6 @@
 <?php
-
-use App\Http\Controllers\GenericController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GenericController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [GenericController::class, 'landing']);
+Route::get('/', [GenericController::class,'landing']);
+
+Route::get('/generate-token', [GenericController::class,'generateToken']);
 
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
+
+    Route::post(
+        uri: '/oauth-access-tokens',
+        action: [GenericController::class, 'generateToken']
+    )->name('voyager.oauth-access-tokens.store');
+
+
 });
+
